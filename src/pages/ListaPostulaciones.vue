@@ -1,27 +1,77 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="q-pa-md">
-    <div class="q-gutter-md" style="max-width: 300px">     
-      <q-input outlined v-model="text" label="User Name" />
-      <q-input outlined v-model="text" label="Password1" />
+  <div class="q-pa-md q-gutter-sm">
+    <q-editor
+      v-model="editor"
+      :definitions="{
+        save: {
+          tip: 'Subir postulacion',
+          icon: 'save',
+          label: 'Subir',
+          handler: saveWork
+        }
+      }"
+      :toolbar="[
+        ['bold', 'italic', 'underline'],
+        ['save']
+      ]"
+    />
+
+    <q-card class= "row"
+      flat bordered v-for="(item, index) in tasks" :key="index">
+      <q-card-section 
+      class = "col" v-html= "item.texto"
+      :class = "item.estado ? 'tachar': '' "/>
+      <q-btn 
+      flat color = "blue" @click="item.estado = ! item.estado" >Accion</q-btn>
+      <q-btn flat color = "red" @click="eliminar(index)">Eliminar</q-btn>
+    </q-card>
+
+    <div class = "flex flex-center" v-if = "tasks.length == 0">
+      <h6> Sin postulaciones a ayudantias </h6>
     </div>
   </div>
-  </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { ref } from 'vue';
 
+import { ref } from 'vue'
 
-export default defineComponent({
-  name: 'PageSign-in',
-
-  setup () {
+export default {
+  data() {
     return {
-      text: ref('')
+      editor: ref(' '),
+      tasks:[]
     }
+  },  
+    methods: {
+      saveWork () {
+        this.tasks.push({
+          texto: this.editor,
+          estado: false
+        })
+        this.$q.notify({
+          message: 'Postulacion publicada',
+          color: 'positive',
+          textColor: 'white',
+          icon: 'cloud_done'
+        })
+      },
+      eliminar(index){
+        this.$q.dialog({
+        title: '¿Esta seguro?',
+        message: '¿Realmente quiere eliminar la postulacion?',
+        cancel: true,
+        persistent: true
+        }).onOk(() => {
+        this.tasks.splice(index, 1);
+        })
+      }
+    }   
   }
-  
-})
 </script>
+
+<style >
+  .tachar{
+    text-decoration: line-through;
+  }
+</style>
