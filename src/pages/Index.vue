@@ -21,7 +21,7 @@
       </q-input>
 
       <div class="flex flex-center">
-        <q-btn label="Ingresar" type="submit" color="primary" to="/Index"/>
+        <q-btn label="Ingresar" type="submit" color="primary" to="/List"/>
       </div>
       </q-form>
     </div>
