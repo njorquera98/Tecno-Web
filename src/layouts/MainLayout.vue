@@ -15,20 +15,9 @@
       >
         <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
           <q-list padding>
-
-            <q-item clickable v-ripple to="/Crear">
-              <q-item-section avatar>
-                <q-icon name="star" />
-              </q-item-section>
-
-              <q-item-section>
-                Mis Datos
-              </q-item-section>
-            </q-item>
-
             <q-item clickable v-ripple  to="/Sign-in">
               <q-item-section avatar>
-                <q-icon name="inbox"/>
+                <q-icon name="assignment"/>
               </q-item-section>
 
               <q-item-section  >
