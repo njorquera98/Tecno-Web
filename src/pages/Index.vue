@@ -1,6 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div class="q-pa-md" style="max-width: 400px">
+      <img class="flex flex-center" src="https://i.ibb.co/17BfZPQ/logo-negro-y-color.png" style="max-width: 300px">
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input 
         filled
@@ -21,7 +22,14 @@
       </q-input>
 
       <div class="flex flex-center">
-        <q-btn label="Ingresar" type="submit" color="primary" to="/List"/>
+        <q-btn 
+        label="Entrar" 
+        type="submit" 
+        color="primary" 
+        to="/List"/>
+      </div>
+      <div class="flex flex-center">
+        <q-btn label="Ingresar con Gmail Institucional" type="submit" color="negative" to=""/>
       </div>
       </q-form>
     </div>

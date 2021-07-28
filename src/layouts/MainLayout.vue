@@ -1,30 +1,31 @@
 <template>
-<q-layout view="lHh Lpr lff">
-      <q-header elevated class="primary">
-        <q-toolbar>
-          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-          <q-toolbar-title>Postulacion Ayudantias</q-toolbar-title>
-        </q-toolbar>
-      </q-header>
+  <q-layout view="hHh lpR lFf">
 
-      <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="200"
-        :breakpoint="400"
-      >
-        <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+    <q-header reveal elevated class="bg-primary text-white">
+      <q-toolbar>
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          Postulacion Ayudantías
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="desktop" elevated>
+      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
           <q-list padding>
-            <q-item clickable v-ripple  to="/Sign-in">
+            <q-item clickable v-ripple to="/">
               <q-item-section avatar>
-                <q-icon name="assignment"/>
+                <q-icon name="home"/>
               </q-item-section>
 
               <q-item-section  >
-                Ofertas
+                Inicio
               </q-item-section>
             </q-item>
-
           </q-list>
         </q-scroll-area>
 
@@ -37,12 +38,13 @@
             <div>@Nombre_Usuario</div>
           </div>
         </q-img>
-      </q-drawer>
+    </q-drawer>
 
-      <q-page-container>
-        <router-view></router-view>
-      </q-page-container>
-    </q-layout>
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
+  </q-layout>
 </template>
 
 <script>
@@ -50,10 +52,13 @@ import { ref } from 'vue'
 
 export default {
   setup () {
-    const drawer = ref(false)
+    const leftDrawerOpen = ref(false)
 
     return {
-      drawer
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      }
     }
   }
 }
