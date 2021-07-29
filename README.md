@@ -1,6 +1,6 @@
 # Ayudantias-DICI
 Proyecto Tecnologia Web
 
-Aplicacion web para postular a las ayudantias del departamento de Ingenieria civil en Computación e Informatica.
+Aplicación Web para postular a las ayudantías del departamento de Ingeniería civil en Computación e Informática.
 
-https://ayudantias-dici.herokuapp.com
+Dirección IP del proyecto: https://ayudantias-dici.herokuapp.com
