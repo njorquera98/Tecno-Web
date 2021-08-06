@@ -3,14 +3,16 @@ const routes = [
     path: '/',
     component: () => import('layouts/Index.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') }      
     ],
   },
   {
     path: '/home',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/List', component: () => import('pages/ListaPostulaciones.vue') }
+      { path: '/Lista', component: () => import('pages/ListaPostulaciones.vue')},
+      { path: '/Crear', component: () => import('pages/CrearPostulaciones.vue')},
+      { path: '/Test', component: () => import('pages/test.vue')}
     ]
   },
 

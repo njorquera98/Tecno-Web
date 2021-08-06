@@ -1,6 +1,8 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
     <h5>Formulario de {{ acceder ? "Login" : "Registro" }}</h5>
+    <pre> {{ isAuthenticated }} </pre>
+    <pre> {{ user }} </pre>
     <q-form class="q-gutter-md" @submit.prevent="procesarFormulario">
       <q-input label="Email" v-model="email" />
       <q-input label="Contraseña" v-model="password" />
@@ -23,7 +25,7 @@
 import { ref } from "vue";
 import { db } from "boot/firebase";
 import { auth } from "boot/firebase";
-
+import {useAuth} from "@vueuse/firebase";
 
 export default {
   setup() {
@@ -31,7 +33,7 @@ export default {
     const password = ref("");
     const acceder = ref(true);
 
-    
+    const {isAuthenticated, user} = useAuth()
 
     const procesarFormulario = async () => {
       if (!email.value.trim() || !password.value.trim()) {
@@ -55,9 +57,9 @@ export default {
             email.value,
             password.value
           );
-            await db.collection("usuarios").doc(usuario.user.uid).update({
+            await db.collection("usuarios").doc(usuario.user.uid).set({
             
-            estado: false,
+            estado: true,
             
           });
           console.log(usuario.user);
@@ -73,7 +75,8 @@ export default {
       password,
       procesarFormulario,
       acceder,
-
+      isAuthenticated, 
+      user
     };
   },
 };
